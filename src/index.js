@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import data from './Resources/data.json'
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App notes={data.notes} />
   </React.StrictMode>,
   document.getElementById('root')
 );

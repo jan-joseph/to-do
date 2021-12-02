@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import Note from "./components/Note";
 
-function App() {
+function App(props) {
+  const [notes, setNotes] = useState(props.notes);
+  const [newNote, setNewNote] = useState("Add Here");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const noteObject = {
+      content: newNote,
+      date: new Date().toISOString(),
+      important: Math.random() < 0.5,
+      id: notes.length + 1,
+    };
+  };
+
+  const handleFormChange = (e) => {
+    setNewNote(e.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Notes</h1>
+      <ul>
+        {notes.map((note) => (
+          <Note id={note.id} content={note.content} />
+        ))}
+      </ul>
+      <form onSubmit={handleSubmit}>
+        <input
+          placeholder={newNote}
+          onChange={handleFormChange}
+        />
+        <button type="submit">Save</button>
+      </form>
     </div>
   );
 }
