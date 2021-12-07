@@ -33,6 +33,9 @@ Builds the app for production to the `build` folder.\
 
 ### `yarn eject`
 
+To eject the project. Irreversible.
+
 ### `npm run server`
 
 To run the local server containing the db.json
+Open [http://localhost:3001/notes](http://localhost:3001/notes) to check the contents of the db file.
