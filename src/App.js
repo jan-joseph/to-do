@@ -9,7 +9,6 @@ function App(props) {
   const [newNote, setNewNote] = useState("Add Here");
   const [showAll, setShowAll] = useState(false);
 
-  console.log("App rendered");
   // Initial Render to load the notes from db.json to the screen
   useEffect(() => {
     noteService.getAll().then((initialNotes) => {
@@ -48,12 +47,10 @@ function App(props) {
     noteService.update(id, updatedNote).then((returnedNote) => {
       setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)));
     });
-    console.log(notes);
   };
 
   const notesToShow = showAll ? notes : notes.filter((note) => note.important);
 
-  console.log(notesToShow);
   return (
     <div className="App">
       <h1>Notes</h1>
